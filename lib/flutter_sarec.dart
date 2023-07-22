@@ -15,6 +15,11 @@ int sum(int a, int b) => _bindings.sum(a, b);
 int createSarecClient() => _bindings.create_sarec_client();
 int startRecording(int client, String fileName) =>
     _bindings.start(client, fileName);
+
+int stopRecording(int client) => _bindings.stop(client);
+int pauseRecording(int client) => _bindings.pause(client);
+int resumeRecording(int client) => _bindings.resume(client);
+int isRecording(int client) => _bindings.is_recording(client);
 int destroySarecClient(int client) => _bindings.destroy_sarec_client(client);
 
 /// A longer lived native function, which occupies the thread calling it.

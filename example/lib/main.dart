@@ -17,23 +17,69 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     client = flutter_sarec.createSarecClient();
-
-    flutter_sarec.startRecording(client, "./roothless.raw");
     super.initState();
   }
 
+  bool recordingStarted = false;
+  bool paused = false;
+
   @override
   void dispose() {
-    // TODO: implement dispose
-    flutter_sarec.destroySarecClient(client);
-    print("Disposing");
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(),
+    return MaterialApp(
+      home: Scaffold(
+        body: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                if (recordingStarted) {
+                  setState(() {
+                    flutter_sarec.stopRecording(client);
+                    recordingStarted = false;
+                  });
+                } else {
+                  setState(() {
+                    flutter_sarec.startRecording(client, "./sample.raw");
+                    recordingStarted = true;
+                  });
+                }
+              },
+              child:
+                  Text(recordingStarted ? "Stop Recording" : "Start Recording"),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                print("On Pause clicked");
+                if (!recordingStarted) {
+                  setState(() {
+                    paused = false;
+                  });
+                  return;
+                }
+
+                print("Here");
+
+                if (!paused) {
+                  setState(() {
+                    flutter_sarec.pauseRecording(client);
+                    paused = true;
+                  });
+                } else {
+                  setState(() {
+                    flutter_sarec.resumeRecording(client);
+                    paused = false;
+                  });
+                }
+              },
+              child: Text(!paused ? "Pause Recording" : "Resume Recording"),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

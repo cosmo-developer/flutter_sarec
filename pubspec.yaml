@@ -1,5 +1,5 @@
 name: flutter_sarec
-description: A new Flutter FFI plugin project.
+description: A system audio recorder plugin for flutter
 version: 0.0.1
 homepage: https://github.com/cosmo-developer/flutter_sarec
 

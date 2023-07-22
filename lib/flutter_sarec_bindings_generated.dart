@@ -91,6 +91,43 @@ class FlutterSarecBindings {
   late final _start =
       _startPtr.asFunction<int Function(int, ffi.Pointer<ffi.Uint8>)>();
 
+  int stop(int client) {
+    return _stop(client);
+  }
+
+  late final _stopPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>('Stop');
+
+  late final _stop = _stopPtr.asFunction<int Function(int)>();
+
+  int pause(int client) {
+    return _pause(client);
+  }
+
+  late final _pausePtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>('Pause');
+
+  late final _pause = _pausePtr.asFunction<int Function(int)>();
+
+  int resume(int client) {
+    return _resume(client);
+  }
+
+  late final _resumePtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>('Resume');
+
+  late final _resume = _resumePtr.asFunction<int Function(int)>();
+
+  int is_recording(int client) {
+    return _is_recording(client);
+  }
+
+  late final _is_recordingPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>(
+          'IsRecording');
+
+  late final _is_recording = _is_recordingPtr.asFunction<int Function(int)>();
+
   int destroy_sarec_client(int client) {
     return _destroy_sarec_client(client);
   }
