@@ -47,4 +47,7 @@ FFI_PLUGIN_EXPORT intptr_t IsRecording(void*);
 
 FFI_PLUGIN_EXPORT intptr_t DestroySarecClient(void*);
 
+FFI_PLUGIN_EXPORT intptr_t GetWave(void*);
+
+
 

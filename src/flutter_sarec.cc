@@ -3,11 +3,12 @@
 #include <mmdeviceapi.h>
 #include <audioclient.h>
 #include <fstream>
+#include <thread>
+#include <memory>
+
 #pragma comment(lib, "ole32.lib")
 #pragma comment(lib, "oleaut32.lib")
 #pragma comment(lib, "winmm.lib")
-#include <thread>
-#include <memory>
 
 #define S2IMPL(sareClient) (reinterpret_cast<SarectClientWindowImpl*>(sareClient))
 
@@ -25,10 +26,6 @@ struct SarectClientWindowImpl{
 };
 
 
-
-void developeThread(){
-	Sleep(10000);
-}
 
 FFI_PLUGIN_EXPORT void* CreateSarecClient(){
 	CoInitialize(nullptr);
@@ -98,16 +95,6 @@ FFI_PLUGIN_EXPORT void* CreateSarecClient(){
 	
 	SarectClientWindowImpl* sareClient=new SarectClientWindowImpl();
 	
-	/*
-	
-	IAudioCaptureClient* pCaptureClient = nullptr;
-	WAVEFORMATEX* pWaveFormatEx = nullptr;
-	IMMDeviceEnumerator* pEnumerator = nullptr;
-	IMMDevice* pDevice = nullptr;
-	IAudioClient* pAudioClient = nullptr;
-	HANDLE hAudioFile = nullptr;
-	*/
-	
 	sareClient->pEnumerator=pEnumerator;
 	sareClient->pCaptureClient=pCaptureClient;
 	sareClient->pWaveFormatEx=pWaveFormatEx;
@@ -175,6 +162,7 @@ FFI_PLUGIN_EXPORT intptr_t Start(void* client,const char* filename){
 }
 
 FFI_PLUGIN_EXPORT intptr_t Pause(void* client){
+	if (client==nullptr) return 0;
 	auto sareClient=S2IMPL(client);
 	sareClient->pauseRecording=true;
 	return 1;
@@ -182,12 +170,14 @@ FFI_PLUGIN_EXPORT intptr_t Pause(void* client){
 }
 
 FFI_PLUGIN_EXPORT intptr_t Resume(void* client){
+	if (client==nullptr) return 0;
 	auto sareClient=S2IMPL(client);
 	sareClient->pauseRecording=false;
 	return 1;
 }
 
 FFI_PLUGIN_EXPORT intptr_t Stop(void* client){
+	if (client==nullptr) return 0;
 	auto sareClient=S2IMPL(client);
 	sareClient->isRecording=false;
 	sareClient->pauseRecording=false;
@@ -197,6 +187,7 @@ FFI_PLUGIN_EXPORT intptr_t Stop(void* client){
 }
 
 FFI_PLUGIN_EXPORT intptr_t IsRecording(void* client){
+	if (client==nullptr) return 0;
 	auto sareClient=S2IMPL(client);
 	return sareClient->isRecording=true;
 }
@@ -204,13 +195,11 @@ FFI_PLUGIN_EXPORT intptr_t IsRecording(void* client){
 
 FFI_PLUGIN_EXPORT intptr_t SaveToWav(void*,const char*){
 	
-	
 	return 1;
 }
 
 FFI_PLUGIN_EXPORT intptr_t DestroySarecClient(void* client){
 	if (client==nullptr) return 0;
-	
 	
 	auto sareClient=S2IMPL(client);
 	sareClient->pCaptureClient->Release();
