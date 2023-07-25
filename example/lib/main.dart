@@ -17,6 +17,7 @@ class _MyAppState extends State<MyApp> {
   @override
   void initState() {
     client = flutter_sarec.createSarecClient();
+    print("client:$client");
     super.initState();
   }
 

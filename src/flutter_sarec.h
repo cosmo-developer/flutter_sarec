@@ -47,7 +47,32 @@ FFI_PLUGIN_EXPORT intptr_t IsRecording(void*);
 
 FFI_PLUGIN_EXPORT intptr_t DestroySarecClient(void*);
 
-FFI_PLUGIN_EXPORT intptr_t GetWave(void*);
+FFI_PLUGIN_EXPORT intptr_t GetSystemRecordingFormatTag(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetSystemRecordingChannels(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetSystemRecordingSamplesPerSec(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetSystemRecordingBitsPerSample(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetSystemRecordingBlockAlign(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetSystemRecordingAvgBytesPerSec(void*);
 
 
+FFI_PLUGIN_EXPORT intptr_t GetMicRecordingFormatTag(void*);
 
+FFI_PLUGIN_EXPORT intptr_t GetMicRecordingChannels(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetMicRecordingSamplesPerSec(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetMicRecordingBitsPerSample(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetMicRecordingBlockAlign(void*);
+
+FFI_PLUGIN_EXPORT intptr_t GetMicRecordingAvgBytesPerSec(void*);
+
+
+FFI_PLUGIN_EXPORT intptr_t IncludeMicRecording(void*,intptr_t);
+
+FFI_PLUGIN_EXPORT intptr_t IsMicIncluded(void*);

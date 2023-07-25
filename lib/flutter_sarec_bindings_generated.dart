@@ -138,4 +138,82 @@ class FlutterSarecBindings {
 
   late final _destroy_sarec_client =
       _destroy_sarec_clientPtr.asFunction<int Function(int)>();
+
+  int get_system_recording_format_tag(int client) {
+    return _get_system_recording_format_tag(client);
+  }
+
+  late final _get_system_recording_format_tagPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>(
+          'GetSystemRecordingFormatTag');
+
+  late final _get_system_recording_format_tag =
+      _get_system_recording_format_tagPtr.asFunction<int Function(int)>();
+
+  int get_system_recording_channels(int client) {
+    return _get_system_recording_channels(client);
+  }
+
+  late final _get_system_recording_channelsPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>(
+          'GetSystemRecordingChannels');
+
+  late final _get_system_recording_channels =
+      _get_system_recording_channelsPtr.asFunction<int Function(int)>();
+
+  int get_system_recording_samples_per_sec(int client) {
+    return _get_system_recording_samples_per_sec(client);
+  }
+
+  late final _get_system_recording_samples_per_secPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>(
+          'GetSystemRecordingSamplesPerSec');
+
+  late final _get_system_recording_samples_per_sec =
+      _get_system_recording_samples_per_secPtr.asFunction<int Function(int)>();
+
+  int get_system_recording_bits_per_sample(int client) {
+    return _get_system_recording_bits_per_sample(client);
+  }
+
+  late final _get_system_recording_bits_per_samplePtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>(
+          'GetSystemRecordingBitsPerSample');
+
+  late final _get_system_recording_bits_per_sample =
+      _get_system_recording_bits_per_samplePtr.asFunction<int Function(int)>();
+
+  int get_system_recording_block_align(int client) {
+    return _get_system_recording_block_align(client);
+  }
+
+  late final _get_system_recording_block_alignPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>(
+          'GetSystemRecordingBlockAlign');
+
+  late final _get_system_recording_block_align =
+      _get_system_recording_block_alignPtr.asFunction<int Function(int)>();
+
+  int get_system_recording_avg_bytes_per_sec(int client) {
+    return _get_system_recording_avg_bytes_per_sec(client);
+  }
+
+  late final _get_system_recording_avg_bytes_per_secPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr)>>(
+          'GetSystemRecordingAvgBytesPerSec');
+
+  late final _get_system_recording_avg_bytes_per_sec =
+      _get_system_recording_avg_bytes_per_secPtr
+          .asFunction<int Function(int)>();
+
+  int include_mic_recording(int client, bool mute) {
+    return _include_mic_recording(client, mute ? 1 : 0);
+  }
+
+  late final _include_mic_recordingPtr =
+      _lookup<ffi.NativeFunction<ffi.IntPtr Function(ffi.IntPtr, ffi.IntPtr)>>(
+          'IncludeMicRecording');
+
+  late final _include_mic_recording =
+      _include_mic_recordingPtr.asFunction<int Function(int, int)>();
 }

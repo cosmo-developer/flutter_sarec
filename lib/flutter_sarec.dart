@@ -20,6 +20,26 @@ int stopRecording(int client) => _bindings.stop(client);
 int pauseRecording(int client) => _bindings.pause(client);
 int resumeRecording(int client) => _bindings.resume(client);
 int isRecording(int client) => _bindings.is_recording(client);
+int getSystemRecordingFormatTag(int client) =>
+    _bindings.get_system_recording_format_tag(client);
+int getSystemRecordingChannels(int client) =>
+    _bindings.get_system_recording_channels(client);
+
+int getSystemRecordingSamplesPerSec(int client) =>
+    _bindings.get_system_recording_samples_per_sec(client);
+
+int getSytemRecordingBitsPerSample(int client) =>
+    _bindings.get_system_recording_bits_per_sample(client);
+
+int getSystemRecordingBlockAlign(int client) =>
+    _bindings.get_system_recording_block_align(client);
+
+int getSystemRecordingAvgBytesPerSec(int client) =>
+    _bindings.get_system_recording_avg_bytes_per_sec(client);
+
+int includeMicRecording(int client, {bool mute = true}) =>
+    _bindings.include_mic_recording(client, mute);
+
 int destroySarecClient(int client) => _bindings.destroy_sarec_client(client);
 
 /// A longer lived native function, which occupies the thread calling it.
